@@ -112,7 +112,7 @@ def main():
                 
                 # st.write(docs)
                 
-                llm = OpenAI(temperature=1, model_name='gpt-3.5-turbo')
+                llm = OpenAI(temperature=0, model_name='gpt-3.5-turbo')
                 chain = load_qa_chain(llm=llm, chain_type="stuff")
                 
                 
@@ -126,13 +126,13 @@ def main():
                         # response = chain.run(input_documents=docs, question=query)
                     st.subheader("Result: ")
                     st.info(response, icon='ℹ️')
-                    st.ballons()
                     
                         
                 
                 response = chain.run(input_documents=docs, question=query)
                 st.subheader("Result: ")
                 st.info(response, icon='ℹ️')
+                st.balloons()
                 
     st.write("Made with ❤️ and 🧠 by [Ajinkya Kale](https://www.linkedin.com/in/ajinkode/)")
 
