@@ -9,6 +9,7 @@ from langchain.vectorstores import FAISS
 from langchain.llms import OpenAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.callbacks import get_openai_callback
+import time
 
 import os
 
@@ -27,13 +28,12 @@ with st.sidebar:
     st.title("PDF Wizard 💬🤖")
     
     
-    
-    
-    pdf = st.file_uploader("Upload your PDF", type='pdf')
-    
+    st.subheader("Effortlessly upload your PDFs and ask any questions related to the PDF.")
     st.markdown('''
-        ## About
-        Experience the ultimate PDF companion with our user-friendly LLM-powered chatbot! Effortlessly upload your PDFs and ask any questions related to the PDF.
+        ## Steps:
+        - Paste your OpenAI API Key. If you don't have one, generate it here https://platform.openai.com/account/api-keys.
+        - Upload your desired PDF.
+        - Ask questions related to the PDF!
                 ''')
     
     
@@ -54,9 +54,11 @@ def main():
     st.header("Chat with PDF 💬")
     # load_dotenv()
     
+    pdf = st.file_uploader("Upload your PDF", type='pdf')
+    
     # upload a pdf file
     st.markdown("Get your OpenAI API Key [here](https://platform.openai.com/account/api-keys) ")
-    tempkey = st.text_input(":orange[Please enter your OpenAI API Key]", type='password', placeholder='sk-xxxx')
+    tempkey = st.text_input(":orange[Please enter your OpenAI API Key to start chatting]", type='password', placeholder='sk-xxxx')
     
     
     if tempkey is not None:
@@ -104,35 +106,24 @@ def main():
                     
             # Accept user questions/query
             query = st.text_input("Ask questions about your PDF file: ")
-            # st.write(query)
             
+            # processing the query
             if query:
-                
-                docs = VectorStore.similarity_search(query=query, k=3)
-                
-                # st.write(docs)
-                
-                llm = OpenAI(temperature=0, model_name='gpt-3.5-turbo')
-                chain = load_qa_chain(llm=llm, chain_type="stuff")
-                
-                
-                
-                if st.button('Tap to see tokens consumed'):
-                    with get_openai_callback() as cb:
-                        response = chain.run(input_documents=docs, question=query)
-                        st.write("Total tokens and total cost associated: ")
-                        st.write(cb)
-                        
-                        # response = chain.run(input_documents=docs, question=query)
-                    st.subheader("Result: ")
-                    st.info(response, icon='ℹ️')
+                with st.spinner("Please wait, generating response..."):
+                    docs = VectorStore.similarity_search(query=query, k=3)
+                    llm = OpenAI(temperature=0, model_name='gpt-3.5-turbo')
+                    chain = load_qa_chain(llm=llm, chain_type="stuff")
                     
-                        
-                
-                response = chain.run(input_documents=docs, question=query)
-                st.subheader("Result: ")
-                st.info(response, icon='ℹ️')
-                st.balloons()
+                    if st.button('Tap to see tokens consumed'):
+                        with get_openai_callback() as cb:
+                            response = chain.run(input_documents=docs, question=query)
+                            st.write("Total tokens and total cost associated: ")
+                            st.write(cb)
+
+                    response = chain.run(input_documents=docs, question=query)
+                    st.subheader("Result:")
+                    st.info(response, icon='ℹ️')
+                    st.balloons()
                 
     st.write("Made with ❤️ and 🧠 by [Ajinkya Kale](https://www.linkedin.com/in/ajinkode/)")
 
@@ -142,3 +133,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
