@@ -126,6 +126,7 @@ def main():
                         # response = chain.run(input_documents=docs, question=query)
                     st.subheader("Result: ")
                     st.info(response, icon='ℹ️')
+                    st.ballons()
                     
                         
                 
