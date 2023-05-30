@@ -114,7 +114,7 @@ def main():
                     llm = OpenAI(temperature=0, model_name='gpt-3.5-turbo')
                     chain = load_qa_chain(llm=llm, chain_type="stuff")
                     
-                    if st.button('Tap to see tokens consumed'):
+                    if st.button('Click to see the tokens consumed!'):
                         with get_openai_callback() as cb:
                             response = chain.run(input_documents=docs, question=query)
                             st.write("Total tokens and total cost associated: ")
@@ -133,4 +133,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
