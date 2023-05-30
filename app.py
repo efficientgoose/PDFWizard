@@ -12,35 +12,9 @@ from langchain.callbacks import get_openai_callback
 
 import os
 
-# Coding the sidebar
 
-
-# st.image('./chat.jpg', width=200, caption="Chat with your PDF")
-
-# # Add custom CSS to center the image
-# st.markdown(
-#     """
-#     <style>
-#     .center {
-#         display: flex;
-#         justify-content: center;
-#         align-items: center;
-#         height: 100vh;
-#     }
-#     </style>
-#     """,
-#     unsafe_allow_html=True
-# )
-
-# # Display the image in the center
-# st.markdown(
-#     """
-#     <div class="center">
-#         <img src="./chat.jpg" alt="Image" width=200>
-#     </div>
-#     """,
-#     unsafe_allow_html=True
-# )
+st.set_page_config(page_title='PDF Wizard', page_icon = "./chat.ico", layout = 'wide', initial_sidebar_state = 'auto')
+# favicon being an object of the same kind as the one you should provide st.image() with (ie. a PIL array for example) or a string (url or local file path)
 
 # Center the image
 container = st.container()
@@ -48,7 +22,7 @@ col_centered = container.columns(3)
 col_centered[1].image('./chat.jpg', width=200)
 
 
-
+# Coding the sidebar
 with st.sidebar:
     st.title("PDF Wizard 💬🤖")
     
@@ -154,6 +128,7 @@ def main():
                         # response = chain.run(input_documents=docs, question=query)
                     st.subheader("Result: ")
                     st.info(response, icon='ℹ️')
+                    
                         
                 
                 response = chain.run(input_documents=docs, question=query)
