@@ -112,7 +112,7 @@ def main():
                 
                 # st.write(docs)
                 
-                llm = OpenAI(temperature=0, model_name='gpt-3.5-turbo')
+                llm = OpenAI(temperature=1, model_name='gpt-3.5-turbo')
                 chain = load_qa_chain(llm=llm, chain_type="stuff")
                 
                 
