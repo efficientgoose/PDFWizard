@@ -14,14 +14,14 @@ import os
 
 
 st.set_page_config(page_title='PDF Wizard', page_icon = "./chat.ico", layout = 'wide', initial_sidebar_state = 'auto')
-# favicon being an object of the same kind as the one you should provide st.image() with (ie. a PIL array for example) or a string (url or local file path)
+
 
 # Center the image
 container = st.container()
 col_centered = container.columns(3)
 col_centered[1].image('./chat.jpg', width=200)
 
-
+st.set_option('deprecation.showfileUploaderEncoding', False)
 # Coding the sidebar
 with st.sidebar:
     st.title("PDF Wizard 💬🤖")
@@ -36,11 +36,8 @@ with st.sidebar:
         Experience the ultimate PDF companion with our user-friendly LLM-powered chatbot! Effortlessly upload your PDFs and ask any questions related to the PDF.
                 ''')
     
-    st.write("Made with ❤️ by [Ajinkya Kale](https://www.linkedin.com/in/ajinkode/)")
     
-    
-    
-    # OPENAI_API_KEY = 'abc'
+
 # Hide 'Made with Streamlit'
 hide_st_style = """
             <style>
@@ -110,6 +107,7 @@ def main():
             # st.write(query)
             
             if query:
+                
                 docs = VectorStore.similarity_search(query=query, k=3)
                 
                 # st.write(docs)
@@ -134,8 +132,12 @@ def main():
                 response = chain.run(input_documents=docs, question=query)
                 st.subheader("Result: ")
                 st.info(response, icon='ℹ️')
-            
                 
-                
+    st.write("Made with ❤️ by [Ajinkya Kale](https://www.linkedin.com/in/ajinkode/)")
+
+
+
+
+
 if __name__ == '__main__':
     main()
