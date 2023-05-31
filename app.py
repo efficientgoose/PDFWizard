@@ -111,7 +111,7 @@ def main():
             if query:
                 with st.spinner("Please wait, generating response..."):
                     docs = VectorStore.similarity_search(query=query, k=3)
-                    llm = OpenAI(temperature=0, model_name='gpt-3.5-turbo')
+                    llm = OpenAI(temperature=0)
                     chain = load_qa_chain(llm=llm, chain_type="stuff")
                     
                     if st.button('Click to see the tokens consumed!'):
