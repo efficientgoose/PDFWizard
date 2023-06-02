@@ -48,7 +48,7 @@ hide_st_style = """
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
     
-    
+
     
 def main():
     st.header("Chat with PDF 💬")
@@ -58,7 +58,7 @@ def main():
     
     # upload a pdf file
     st.markdown("Get your OpenAI API Key [here](https://platform.openai.com/account/api-keys) ")
-    tempkey = st.text_input(":orange[Please enter your OpenAI API Key to start chatting]", type='password', placeholder='sk-xxxx')
+    tempkey = st.text_input(":orange[Please enter your OpenAI API Key to start chatting]", type='password', placeholder='sk-xxxxx')
     
     
     if tempkey is not None:
@@ -111,7 +111,7 @@ def main():
             if query:
                 with st.spinner("Please wait, generating response..."):
                     docs = VectorStore.similarity_search(query=query, k=3)
-                    llm = OpenAI(temperature=0, model='gpt-3.5-turbo')
+                    llm = OpenAI(temperature=0,)
                     chain = load_qa_chain(llm=llm, chain_type="stuff")
                     
                     if st.button('Click to see the tokens consumed!'):
