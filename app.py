@@ -126,10 +126,7 @@ def main():
                     st.balloons()
                 
     st.write("Made with ❤️ by [Ajinkya Kale](https://www.linkedin.com/in/ajinkode/)")
-
-
-
-
-
+    
+    
 if __name__ == '__main__':
     main()
