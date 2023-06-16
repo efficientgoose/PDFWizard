@@ -3,6 +3,7 @@ import streamlit as st
 import pickle
 from streamlit_extras.add_vertical_space import add_vertical_space
 from PyPDF2 import PdfReader
+
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
@@ -14,7 +15,7 @@ import time
 import os
 
 
-st.set_page_config(page_title='PDF Wizard', page_icon = "./chat.ico", layout = 'wide', initial_sidebar_state = 'auto')
+st.set_page_config(page_title='PDF Wizard', page_icon = "./chat.ico", initial_sidebar_state = 'collapsed')
 
 
 # Center the image
@@ -130,3 +131,4 @@ def main():
     
 if __name__ == '__main__':
     main()
+    
