@@ -15,7 +15,7 @@ import time
 import os
 
 
-st.set_page_config(page_title='PDF Wizard', page_icon = "./chat.ico", initial_sidebar_state = 'collapsed')
+st.set_page_config(page_title='PDF Wizard', page_icon = "./chat.ico")
 
 
 # Center the image
@@ -32,7 +32,6 @@ with st.sidebar:
     st.subheader("Effortlessly upload your PDFs and ask any questions related to the PDF.")
     st.markdown('''
         ## Steps:
-        - Paste your OpenAI API Key. If you don't have one, generate it here https://platform.openai.com/account/api-keys.
         - Upload your desired PDF.
         - Ask questions related to the PDF!
                 ''')
@@ -58,8 +57,8 @@ def main():
     pdf = st.file_uploader("Upload your PDF", type='pdf')
     
     # upload a pdf file
-    st.markdown("Get your OpenAI API Key [here](https://platform.openai.com/account/api-keys) ")
-    tempkey = st.text_input(":orange[Please enter your OpenAI API Key to start chatting]", type='password', placeholder='sk-xxxxx')
+    # st.markdown("Get your OpenAI API Key [here](https://platform.openai.com/account/api-keys) ")
+    tempkey = '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'
     
     
     if tempkey is not None:
@@ -68,8 +67,8 @@ def main():
     
         os.environ['OPENAI_API_KEY']=apikey
         
-        if apikey:
-            st.success("Successfully uploaded the key! Now please go ahead and upload your PDF.", icon="✅")
+        # if apikey:
+        #     st.success("Successfully uploaded the key! Now please go ahead and upload your PDF.", icon="✅")
     
     
         if pdf is not None:
