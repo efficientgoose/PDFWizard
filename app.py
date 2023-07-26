@@ -58,7 +58,7 @@ def main():
     
     # upload a pdf file
     # st.markdown("Get your OpenAI API Key [here](https://platform.openai.com/account/api-keys) ")
-    tempkey = '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'
+    tempkey = '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'
     
     
     if tempkey is not None:
