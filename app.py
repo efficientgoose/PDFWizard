@@ -54,11 +54,12 @@ def main():
     st.header("Chat with PDF 💬")
     # load_dotenv()
     
+    tempkey = st.text_input('Please provide your OpenAI API Key', placeholder='sk-xxxx')
+    st.markdown("Get your OpenAI API Key [here](https://platform.openai.com/account/api-keys) ")
+
     pdf = st.file_uploader("Upload your PDF", type='pdf')
     
     # upload a pdf file
-    # st.markdown("Get your OpenAI API Key [here](https://platform.openai.com/account/api-keys) ")
-    tempkey = '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'
     
     
     if tempkey is not None:
@@ -67,8 +68,8 @@ def main():
     
         os.environ['OPENAI_API_KEY']=apikey
         
-        # if apikey:
-        #     st.success("Successfully uploaded the key! Now please go ahead and upload your PDF.", icon="✅")
+        if apikey:
+            st.success("Successfully uploaded the key! Now please go ahead and upload your PDF.", icon="✅")
     
     
         if pdf is not None:
